@@ -4,8 +4,8 @@ module.exports = function(environment) {
   var ENV = {
     modulePrefix: 'accounting',
     environment: environment,
-    baseURL: '/',
-    locationType: 'auto',
+    baseURL: '/Users/matt/Dropbox/Public/accounting',
+    locationType: 'hash',
     EmberENV: {
       FEATURES: {
         // Here you can enable experimental features on an ember canary build
