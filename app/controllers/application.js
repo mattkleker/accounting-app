@@ -28,7 +28,3 @@ export default Ember.Controller.extend({
 
 });
 
-// var today = new Date(),
-// var month = today.getMonth();
-// var year = today.getFullYear();
-// var currentDate = today.getDate();
