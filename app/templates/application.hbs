@@ -1,7 +1,11 @@
 <div class="jumbotron">
   <h1>My accounting app</h1>
 	<p> My monthly rate is </p>
-	{{input value=monthlyRate}}
+	{{input value=monthlyAmount}}
+	
+  <p>prorated rate: {{proratedRate}}</p>
+  <p>today's date: {{date}}</p>
+  <p>days this month: {{daysInMonth}}</p>
+  <p>{{today}}</p>
 
-	<h2>{{annualRate}}</h2>
 </div>
