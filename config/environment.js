@@ -4,7 +4,7 @@ module.exports = function(environment) {
   var ENV = {
     modulePrefix: 'accounting',
     environment: environment,
-    baseURL: '/Users/matt/Dropbox/Public/accounting',
+    baseURL: '',
     locationType: 'hash',
     EmberENV: {
       FEATURES: {
@@ -40,7 +40,7 @@ module.exports = function(environment) {
   }
 
   if (environment === 'production') {
-
+    ENV.baseURL = '/Users/matt/Dropbox/Public/accounting';
   }
 
   return ENV;
