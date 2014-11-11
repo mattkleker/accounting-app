@@ -1,9 +1,19 @@
 import Ember from 'ember';
 
+
 export default Ember.Controller.extend({
 
   monthlyAmount: 1250,
   today: new Date(),
+  // todayMoment: moment(),
+
+  // momentDate: function() {
+  //   return todayMoment;
+  // }.property('todayMoment'),
+
+  momentDate: function() {
+    return moment().format('LL');
+  }.property('today'),
 
   date: function() {
     return this.get('today').getDate();
@@ -18,8 +28,13 @@ export default Ember.Controller.extend({
     return new Date(year,month+1,0).getDate();
   }.property('year', 'month'),
 
+
+  daysLeftInMonth: function() {
+    return this.get('daysInMonth') - this.get('date') ;
+  }.property('daysInMonth', 'date'),
+
   prorateFactor: function() {
-    return ( this.get('daysInMonth') - this.get('date') ) / this.get('daysInMonth');
+    return this.get('daysLeftInMonth') / this.get('daysInMonth');
   }.property('daysInMonth', 'date'),
 
   proratedRate: function() {
@@ -28,4 +43,4 @@ export default Ember.Controller.extend({
 
 });
 
-//comment
+//comment 

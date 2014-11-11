@@ -29,4 +29,5 @@
   "eqnull": true,
   "esnext": true,
   "unused": true
+  "moment": true
 }

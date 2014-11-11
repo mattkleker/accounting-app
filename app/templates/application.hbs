@@ -3,9 +3,11 @@
 	<p> My monthly rate is </p>
 	{{input value=monthlyAmount}}
 	
-  <p>prorated rate: {{proratedRate}}</p>
+  <p>prorated rate: {{monthlyAmount}} / {{daysInMonth}} * {{daysLeftInMonth}} =</p>
+  <p><b>{{proratedRate}}</b></p>
   <p>today's date: {{date}}</p>
   <p>days this month: {{daysInMonth}}</p>
-  <p>{{today}}</p>
+  <p>full date: {{today}}</p>
+  <p>{{momentDate}}</p>
 
 </div>
