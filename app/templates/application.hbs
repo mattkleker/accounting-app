@@ -1,13 +1,32 @@
 <div class="jumbotron">
   <h1>My accounting app</h1>
-	<p> My monthly rate is </p>
-	{{input value=monthlyAmount}}
-	
-  <p>prorated rate: {{monthlyAmount}} / {{daysInMonth}} * {{daysLeftInMonth}} =</p>
-  <p><b>{{proratedRate}}</b></p>
-  <p>today's date: {{date}}</p>
-  <p>days this month: {{daysInMonth}}</p>
-  <p>full date: {{today}}</p>
-  <p>{{momentDate}}</p>
+
+  <div class="row">
+    <div class="col-md-6">
+    	<p> My monthly rate is </p>
+    	{{input value=monthlyAmount}}
+    	
+      <p>prorated rate: {{monthlyAmount}} / {{daysInMonth}} * {{daysLeftInMonth}} =</p>
+      <p><b>{{proratedRate}}</b></p>
+      <p>today's date: {{date}}</p>
+      <p>days this month: {{daysInMonth}}</p>
+      <p><button type="button" class="btn btn-default" onclick={{copyBlurb}}>blurb (copy)</button>{{blurb}}</p>
+      <p>full date: {{today}}</p>
+      <p>{{momentDate}}</p>
+    </div>
+
+    <div class="col-md-6" class="test">
+      <p> My monthly rate is </p>
+      {{input value=monthlyAmount2}}
+      
+      <p>prorated rate: {{monthlyAmount2}} / {{daysInMonth}} * {{daysLeftInMonth}} =</p>
+      <p><b>{{proratedRate2}}</b></p>
+      <p>today's date: {{date}}</p>
+      <p>days this month: {{daysInMonth}}</p>
+      <p><button type="button" class="btn btn-default" onclick={{copyBlurb}}>blurb (copy)</button>{{blurb2}}</p>
+      <p>full date: {{today}}</p>
+      <p>{{momentDate}}</p>
+    </div>
+  </div>
 
 </div>

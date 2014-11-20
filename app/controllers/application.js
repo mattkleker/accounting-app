@@ -1,10 +1,11 @@
 import Ember from 'ember';
 
-
 export default Ember.Controller.extend({
-
+ 
   monthlyAmount: 1250,
+  monthlyAmount2: 1000,
   today: new Date(),
+
   // todayMoment: moment(),
 
   // momentDate: function() {
@@ -13,7 +14,7 @@ export default Ember.Controller.extend({
 
   momentDate: function() {
     return moment().format('LL');
-  }.property('today'),
+  },
 
   date: function() {
     return this.get('today').getDate();
@@ -37,10 +38,44 @@ export default Ember.Controller.extend({
     return this.get('daysLeftInMonth') / this.get('daysInMonth');
   }.property('daysInMonth', 'date'),
 
+//section for first prorated rate
+
   proratedRate: function() {
     return this.get('monthlyAmount') * this.get('prorateFactor');
-  }.property('monthlyAmount', 'prorateFactor')
+  }.property('monthlyAmount', 'prorateFactor'),
+
+  blurb: function() {
+    var month = this.get('today').getMonth() + 1;
+
+    var year = this.get('today').getFullYear();
+
+    var lastDayOfMonth = new Date(year,month,0).getDate();
+
+    return '  **This ' + this.get('monthlyAmount') + '/month fee is prorated to cover ' 
+    + month + '/' + this.get('date') + '/' + year + ' - ' + month + '/' + lastDayOfMonth + '/' + year;
+  }.property('monthlyAmount', 'date'),
+
+//section for second prorated rate
+
+  proratedRate2: function() {
+    return this.get('monthlyAmount2') * this.get('prorateFactor');
+  }.property('monthlyAmount2', 'prorateFactor'),
+
+  blurb2: function() {
+    var month = this.get('today').getMonth() + 1;
+
+    var year = this.get('today').getFullYear();
+
+    var lastDayOfMonth = new Date(year,month,0).getDate();
+
+    return '  **This ' + this.get('monthlyAmount2') + '/month fee is prorated to cover ' 
+    + month + '/' + this.get('date') + '/' + year + ' - ' + month + '/' + lastDayOfMonth + '/' + year;
+  }.property('monthlyAmount2', 'date'),
+
+
+  copyBlurb: function() {
+
+  }
 
 });
 
-//comment 
