@@ -3,16 +3,15 @@ import Ember from 'ember';
 export default Ember.Component.extend({
 
   today: new Date(),
-
   // todayMoment: moment(),
 
   // momentDate: function() {
   //   return todayMoment;
   // }.property('todayMoment'),
 
-  momentDate: function() {
-    return moment().format('LL');
-  },
+momentDate: moment('date', 'LL'),
+
+
 
   date: function() {
     return this.get('today').getDate();
@@ -42,7 +41,7 @@ export default Ember.Component.extend({
       return currentMonthAmount + this.get('monthlyAmount');
     }
     return currentMonthAmount;
-  }.property('monthlyAmount', 'prorateFactor','includeNextMonth'),
+  }.property('prorateFactor','includeNextMonth','monthlyAmount'),
 
   blurb: function() {
     var month = this.get('today').getMonth() + 1;
