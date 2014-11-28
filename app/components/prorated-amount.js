@@ -1,16 +1,13 @@
 import Ember from 'ember';
+import { moment } from 'ember-moment/computed';
 
 export default Ember.Component.extend({
 
   today: new Date(),
   // todayMoment: moment(),
 
-  // momentDate: function() {
-  //   return todayMoment;
-  // }.property('todayMoment'),
-
-momentDate: moment('date', 'LL'),
-
+  // momentDate: moment(),
+  // shortDate: moment('date', 'MM/DD/YYYY'),        
 
 
   date: function() {
@@ -38,7 +35,7 @@ momentDate: moment('date', 'LL'),
   proratedRate: function() {
     var currentMonthAmount = this.get('monthlyAmount') * this.get('prorateFactor');
     if (this.get('includeNextMonth')) {
-      return currentMonthAmount + this.get('monthlyAmount');
+      return currentMonthAmount + +this.get('monthlyAmount');
     }
     return currentMonthAmount;
   }.property('prorateFactor','includeNextMonth','monthlyAmount'),
