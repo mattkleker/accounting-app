@@ -21,20 +21,38 @@ test('it renders', function() {
 });
 
 
-// test('it calculates prorate factor when current date is in middle of month', function() {
-//   var controller = this.subject( {
-//     date: 15,
-//     daysInMonth: 30
-//   });  
+test('it calculates daysInMonth', function() {
+  var component = this.subject( {
+    today: new Date("October 13, 2014 11:13:00")
+  });  
   
-//   equal(controller.get('prorateFactor'), 0.5);
-// });
+  equal(component.get('daysInMonth'), 31);
+});
 
-// test('it calculates prorate factor when current date is last day of month', function() {
-//   var controller = this.subject( {
-//     date: 30,
-//     daysInMonth: 30
-//   });  
+test('it calculates prorate factor when current date is the first of the month', function() {
+  var component = this.subject( {
+    today: new Date("November 1, 2014 11:13:00")
+  });
 
-//   equal(controller.get('prorateFactor'), 0);
+  equal(component.get('prorateFactor'), 1-1/30);
+});
+
+test('it calculates prorate factor when current date is mid month', function() {
+  var component = this.subject( {
+    today: new Date("November 15, 2014 11:13:00")
+  });
+
+  equal(component.get('prorateFactor'), 0.5);
+});
+
+test('it calculates prorate factor when current date is last day of month', function() {
+  var component = this.subject( {
+    today: new Date("October 31, 2014 11:13:00")
+  });  
+
+  equal(component.get('prorateFactor'), 0);
+});
+
+// test('it calculates correct prorated rate', function() {
+
 // });
