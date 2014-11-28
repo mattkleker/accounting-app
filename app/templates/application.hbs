@@ -9,12 +9,13 @@
         includeNextMonth=includeNextMonth}}
     </div>
 
-    <div class="col-md-6" class="test">
+    <div class="col-md-6">
       {{prorated-amount monthlyAmount=1000
         includeNextMonth=includeNextMonth}}
     </div>
+  </div>
     <p>{{moment date}}</p>
     <p>{{ago date}}</p>
-  </div>
+    {{zero-clipboard text=TEXT label=LABEL}}
 
 </div>
