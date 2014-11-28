@@ -5,7 +5,7 @@ import {
 
 moduleForComponent('prorated-amount', 'ProratedAmountComponent', {
   // specify the other units that are required for this test
-  // needs: ['component:foo', 'helper:bar']
+  needs: ['component:zero-clipboard']
 });
 
 test('it renders', function() {
@@ -19,3 +19,22 @@ test('it renders', function() {
   this.append();
   equal(component._state, 'inDOM');
 });
+
+
+// test('it calculates prorate factor when current date is in middle of month', function() {
+//   var controller = this.subject( {
+//     date: 15,
+//     daysInMonth: 30
+//   });  
+  
+//   equal(controller.get('prorateFactor'), 0.5);
+// });
+
+// test('it calculates prorate factor when current date is last day of month', function() {
+//   var controller = this.subject( {
+//     date: 30,
+//     daysInMonth: 30
+//   });  
+
+//   equal(controller.get('prorateFactor'), 0);
+// });

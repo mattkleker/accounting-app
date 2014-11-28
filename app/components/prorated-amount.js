@@ -1,5 +1,5 @@
 import Ember from 'ember';
-import { moment } from 'ember-moment/computed';
+// import { moment } from 'ember-moment/computed';
 
 export default Ember.Component.extend({
 
@@ -35,7 +35,7 @@ export default Ember.Component.extend({
   proratedRate: function() {
     var currentMonthAmount = this.get('monthlyAmount') * this.get('prorateFactor');
     if (this.get('includeNextMonth')) {
-      return currentMonthAmount + +this.get('monthlyAmount');
+      return currentMonthAmount + parseInt(this.get('monthlyAmount'), 10);
     }
     return currentMonthAmount;
   }.property('prorateFactor','includeNextMonth','monthlyAmount'),
