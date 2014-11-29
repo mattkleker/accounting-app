@@ -20,26 +20,33 @@ test('it renders', function() {
   equal(component._state, 'inDOM');
 });
 
-
-test('it calculates daysInMonth', function() {
+test('it calculates days left in month when current date is first day of month', function() {
   var component = this.subject( {
-    today: new Date("October 13, 2014 11:13:00")
+    today: moment("2014-10-01")
   });  
-  
-  equal(component.get('daysInMonth'), 31);
+
+  equal(component.get('daysLeftInMonth'), 30);
+});
+
+test('it calculates days left in month when current date is last day of month', function() {
+  var component = this.subject( {
+    today: moment("2014-10-31")
+  });  
+
+  equal(component.get('daysLeftInMonth'), 0);
 });
 
 test('it calculates prorate factor when current date is the first of the month', function() {
   var component = this.subject( {
-    today: new Date("November 1, 2014 11:13:00")
+    today: moment("2014-11-01")
   });
 
-  equal(component.get('prorateFactor'), 1-1/30);
+  equal(component.get('prorateFactor'), 29/30);
 });
 
 test('it calculates prorate factor when current date is mid month', function() {
   var component = this.subject( {
-    today: new Date("November 15, 2014 11:13:00")
+    today: moment("2014-11-15")
   });
 
   equal(component.get('prorateFactor'), 0.5);
@@ -47,12 +54,19 @@ test('it calculates prorate factor when current date is mid month', function() {
 
 test('it calculates prorate factor when current date is last day of month', function() {
   var component = this.subject( {
-    today: new Date("October 31, 2014 11:13:00")
+    today: moment("2014-10-31")
   });  
 
   equal(component.get('prorateFactor'), 0);
 });
 
-// test('it calculates correct prorated rate', function() {
+test('it calculates the rate properly', function() {
+  var component = this.subject( {
+    today: moment("2014-11-15"),
+    monthlyAmount: 1000
+  });  
 
-// });
+  equal(component.get('proratedRate'), 500);
+});
+
+// 
