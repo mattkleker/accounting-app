@@ -1,7 +1,11 @@
 <div class="jumbotron">
   <h1>My accounting app</h1>
-
-  {{input type="checkbox" checked=includeNextMonth}}
+  <div class="checkbox">
+    <label for="include-next-month">
+      {{input type="checkbox" id="include-next-month" name="include-next-month" checked=includeNextMonth}}
+      Include Next Month?
+    </label>
+  </div>
 
   <div class="row">
     <div class="col-md-6">

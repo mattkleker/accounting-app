@@ -24,7 +24,13 @@ export default Ember.Component.extend({
   }.property('prorateFactor','includeNextMonth','monthlyAmount'),
 
   blurb: function() {
-    return '  **This ' + this.get('monthlyAmount') + '/month fee is prorated to cover ' + this.get('today').clone().add(1, "day").format("L") + " - " + this.get('lastDayOfMonth').format("L");
+    var blurb = '  **This ' + this.get('monthlyAmount') + '/month fee is prorated to cover ' + this.get('today').clone().add(1, "day").format("L") + " - ";
+    if (this.get('includeNextMonth')) {
+      blurb += this.get('lastDayOfMonth').clone().add(1, "month").format("L");
+    } else {
+      blurb += this.get('lastDayOfMonth').format("L");
+    }
+    return blurb;
   }.property('monthlyAmount', 'today', "lastDayOfMonth"),
 
   copyBlurb: function() {

@@ -5,7 +5,7 @@ import {
 
 moduleForComponent('prorated-amount', 'ProratedAmountComponent', {
   // specify the other units that are required for this test
-  needs: ['component:zero-clipboard']
+  needs: ['component:zero-clipboard','helper:moment']
 });
 
 test('it renders', function() {
@@ -67,6 +67,16 @@ test('it calculates the rate properly', function() {
   });  
 
   equal(component.get('proratedRate'), 500);
+});
+
+test('the blurb is correct when the date is the 18th', function() {
+  var component = this.subject( {
+    today: moment("2014-11-18"),
+    monthlyAmount: 1000,
+    includeNextMonth: true
+  });  
+
+  equal(component.get('blurb'), " **This 1000/month fee is prorated to cover 11/18/2014 - 12/31/2014");
 });
 
 // 

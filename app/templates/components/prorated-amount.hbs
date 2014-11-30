@@ -1,10 +1,10 @@
 <p> My monthly rate is </p>
 {{input value=monthlyAmount}}
 
-<p>prorated rate: {{monthlyAmount}} / {{daysInMonth}} * {{daysLeftInMonth}} =</p>
+<p>prorated rate: {{monthlyAmount}} / {{moment lastDayOfMonth "D"}} * {{daysLeftInMonth}} =</p>
 <p><b>{{proratedRate}}</b></p>
-<p>today's date: {{date}}</p>
-<p>days this month: {{daysInMonth}}</p>
+<p>today's date: {{moment today "L"}}</p>
+<p>days this month: {{moment lastDayOfMonth "D"}}</p>
 <p><button type="button" class="btn btn-default" onclick={{copyBlurb}}>blurb (copy)</button>{{blurb}}</p>
 <p>full date: {{today}}</p>
 <p>{{momentDate}}</p>
