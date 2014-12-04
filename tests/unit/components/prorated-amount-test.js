@@ -1,11 +1,21 @@
+import Ember from 'ember';
 import {
   moduleForComponent,
   test
 } from 'ember-qunit';
+import { initialize } from '../../../initializers/ember-moment';
 
-moduleForComponent('prorated-amount', 'ProratedAmountComponent', {
+moduleForComponent('prorated-amount', 'ProratedAmountComponent', 'moment-test', 'component which uses ember-moment helpers', {
   // specify the other units that are required for this test
-  needs: ['component:zero-clipboard']
+  needs: ['component:zero-clipboard'], 
+  setup: function (container) {
+        Ember.run(function () {
+            // these two arguments are not used
+            // but probably still good to pass them in
+            // in the event we leverage them in the future
+            initialize(container, Ember.Application.create());
+        });
+    }
 });
 
 test('it renders', function() {
@@ -76,7 +86,7 @@ test('the blurb is correct when the date is the 18th', function() {
     includeNextMonth: true
   });  
 
-  equal(component.get('blurb'), "  **This 1000/month fee is prorated to cover 11/19/2014 - 12/31/2014");
+  equal(component.get('blurb'), "  **This $1000/month fee is prorated to cover 11/19/2014 - 12/31/2014");
 });
 
 test('the blurb is correct when the date is the 3rd', function() {
@@ -85,7 +95,7 @@ test('the blurb is correct when the date is the 3rd', function() {
     monthlyAmount: 1000
   });  
 
-  equal(component.get('blurb'), "  **This 1000/month fee is prorated to cover 11/04/2014 - 11/30/2014");
+  equal(component.get('blurb'), "  **This $1000/month fee is prorated to cover 11/04/2014 - 11/30/2014");
 });
 
 test('the blurb is correct when the date is the 26th and includeNextMonth is unchecked', function() {
@@ -95,7 +105,7 @@ test('the blurb is correct when the date is the 26th and includeNextMonth is unc
     includeNextMonth: false
   });  
 
-  equal(component.get('blurb'), "  **This 1000/month fee is prorated to cover 11/27/2014 - 11/30/2014");
+  equal(component.get('blurb'), "  **This $1000/month fee is prorated to cover 11/27/2014 - 11/30/2014");
 });
 
 // 

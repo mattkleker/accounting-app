@@ -26,13 +26,14 @@ export default Ember.Component.extend({
   proratedRate: function() {
     var proratedAmount = this.get('monthlyAmount') * this.get('prorateFactor');
     if (this.get('includeNextMonth')) {
-      return proratedAmount + parseInt(this.get('monthlyAmount'), 10);
+      var proratedAmountWithNextMonth = proratedAmount + parseInt(this.get('monthlyAmount'), 10);
+      return proratedAmountWithNextMonth.toFixed(2);
     }
-    return proratedAmount;
+    return proratedAmount.toFixed(2);
   }.property('prorateFactor','includeNextMonth','monthlyAmount'),
 
   blurb: function() {
-    var blurb = '  **This ' + this.get('monthlyAmount') + '/month fee is prorated to cover ' + this.get('today').clone().add(1, "day").format("L") + " - ";
+    var blurb = '  **This $' + this.get('monthlyAmount') + '/month fee is prorated to cover ' + this.get('today').clone().add(1, "day").format("L") + " - ";
     if (this.get('includeNextMonth')) {
       blurb += this.get('today').clone().add(1, "month").endOf("month").format("L");
     } else {
