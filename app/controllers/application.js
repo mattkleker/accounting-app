@@ -1,6 +1,11 @@
 import Ember from 'ember';
 
 export default Ember.Controller.extend({
+
+  today: moment(),
+  lastDayOfMonth: function() {
+    return this.get('today').clone().endOf("month");
+  }.property('today'),
  
   setDefaultIncludeNextMonth: function() {
     var today = new Date();
@@ -8,6 +13,8 @@ export default Ember.Controller.extend({
       this.set('includeNextMonth', true);
     }
   }.on("init")
+
+
 
 });
 

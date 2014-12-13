@@ -1,6 +1,23 @@
 import Ember from 'ember';
+import EmberValidations from 'ember-validations';
+
+export default Ember.ObjectController.extend(EmberValidations.Mixin);
+
+export default Ember.ObjectController.extend({
+  validations: {
+    monthlyAmount: {
+      numericality: true
+    }
+  }
+});
 
 export default Ember.Component.extend({
+
+  validations: {
+    monthlyAmount: {
+      numericality: true
+    }
+  },
 
   today: moment(),
   lastDayOfMonth: function() {

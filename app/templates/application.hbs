@@ -6,9 +6,9 @@
       Include Next Month?
     </label>
   </div>
+  {{!-- <p>start date: {{input value=monthlyAmount}}</p> --}}
   <p>today's date: {{moment today "L"}}</p>
   <p>days this month: {{moment lastDayOfMonth "D"}}</p>
-
   <div class="row">
     <div class="col-md-6">
       {{prorated-amount monthlyAmount=1250
