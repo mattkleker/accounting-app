@@ -1,0 +1,19 @@
+@import 'bootstrap';
+
+html, body {
+  margin: 20px;
+}
+
+
+.zeroclipboard {
+  display: inline-block;
+}
+.zeroclipboard-is-hover {
+  cursor: pointer;
+}
+.zeroclipboard-is-hover .btn {
+  @extend .btn-default:hover;
+}
+.zeroclipboard-is-active .btn {
+  @extend .btn:active;
+}
