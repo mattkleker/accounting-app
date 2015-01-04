@@ -11,6 +11,8 @@ export default Ember.Component.extend({
   //   return string;
   // }.property('monthlyAmount'),
 
+  today: moment(),
+
   startDateSetter: function() {
     this.set('start', moment().add(1,"day").format('MM/DD/YYYY'));
   }.on('init'),
@@ -35,6 +37,10 @@ export default Ember.Component.extend({
     return this.get('monthlyAmount') / this.get('startDateMonthEnd').date() * this.get('startDateProrateDays');
   }.property('monthlyAmount', 'startDateMonthEnd', 'startDateProrateDays'),
 
+  monthDiff: function() {
+    return this.get('endDate').clone().startOf("month").diff(this.get('startDate').clone().startOf("month"), 'months');
+  }.property('endDate', 'startDate'),
+
   endDateSetter: function() {
     if (this.get('startDate').date() > 17) {
       this.set('end', moment().add(1, "month").endOf("month").format('MM/DD/YYYY'));
@@ -51,31 +57,51 @@ export default Ember.Component.extend({
   }.property('endDate'),
 
   endDateProrateDays: function() {
-    var monthDiff = this.get('endDate').clone().startOf("month").diff(this.get('startDate').clone().startOf("month"), 'months');
-    if (monthDiff > 0) {
+    if (this.get('monthDiff') > 0) {
     return this.get('endDate').diff(this.get('endDateMonthStart'), 'days') + 1;
     }
     return 0;
-  }.property('endDate', 'endDateMonthStart'),
+  }.property('endDate', 'endDateMonthStart', 'monthDiff'),
 
   endDateProratedRate: function() {
     return this.get('monthlyAmount') / this.get('endDate').clone().endOf("month").date() * this.get('endDateProrateDays');
   }.property('monthlyAmount', 'endDate', 'endDateProrateDays'),
 
   middleMonthCount: function() {
-    var monthDiff = this.get('endDate').clone().startOf("month").diff(this.get('startDate').clone().startOf("month"), 'months');
-    if (monthDiff > 1) {
-      return monthDiff - 1;
+    if (this.get('monthDiff') > 1) {
+      return this.get('monthDiff') - 1;
     }
     return 0;
-  }.property('startDate', 'endDate'),
+  }.property('startDate', 'endDate', 'monthDiff'),
 
   proratedRate: function() {
-    return this.get('startDateProratedRate') + this.get('middleMonthCount') * this.get('monthlyAmount') + this.get('endDateProratedRate');
+    var rate = this.get('startDateProratedRate') + this.get('middleMonthCount') * this.get('monthlyAmount') + this.get('endDateProratedRate');
+    return rate.toFixed(2);
   }.property('startDateProratedRate', 'middleMonthCount', 'monthlyAmount', 'endDateProratedRate'),
 
   blurb: function() {
     return '  **This $' + this.get('monthlyAmount') + '/month fee is prorated to cover ' + this.get('startDate').format("L") + " - " + this.get('endDate').format("L");
-  }.property('monthlyAmount', 'startDate', 'endDate')
+  }.property('monthlyAmount', 'startDate', 'endDate'),
+
+  firstMonthEquation: function() {
+    return this.get('startDate').format("MMMM") + ': $' + this.get('monthlyAmount') + ' / ' + this.get('startDate').clone().endOf("month").format("D") + ' x ' + this.get('startDateProrateDays') + " = " + this.get('startDateProratedRate').toFixed(2);
+  }.property('startDate', 'monthlyAmount', 'startDateProrateDays', 'startDateProratedRate'), 
+
+  middleMonthEquation: function() {
+    var equation = "";
+    if(this.get('middleMonthCount') > 0) {
+      var i;
+      for (i = 0; i < this.get('middleMonthCount'); i++) {
+      equation += this.get('startDate').clone().add(i+1,"months").format("MMMM") + ": $" + this.get('monthlyAmount') + "\n";
+      }
+    return equation;
+    }
+  }.property('middleMonthCount', 'startDate'),
+
+  endMonthEquation: function() {
+    if(this.get('monthDiff') > 0){
+    return this.get('endDate').format("MMMM") + ': $' + this.get('monthlyAmount') + ' / ' + this.get('endDate').clone().endOf("month").format("D") + ' x ' + this.get('endDateProrateDays') + " = " + this.get('endDateProratedRate').toFixed(2);
+    }
+  }.property('monthDiff', 'endDate', 'monthlyAmount', 'endDateProrateDays', 'endDateProratedRate')
 
 });

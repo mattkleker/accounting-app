@@ -1,12 +1,22 @@
-<p>Monthly Rate: {{number-input value=monthlyAmount}}</p>
-{{!-- <p>{{bootstrap-datepicker value=expiresAt autoclose=false format="mm/dd/yy" todayHighlight=true weekStart=0}}</p> --}}
-<p>Start date: {{bootstrap-datepicker value=start format="mm/dd/yyyy"}}</p>
-<p>End date: {{bootstrap-datepicker value=end format="mm/dd/yyyy"}}</p>
-<p>Prorate Days: {{prorateDays}}</p>
-<p>{{prorateEquation}}</p>
-<p><b>{{proratedRate}}</b></p>
-{{zero-clipboard text=blurb innerClass="btn btn-default" label='blurb (copy)'}}
-<p>{{blurb}}</p>
-<p>start date prorate days: {{startDateProrateDays}}</p>
-<p>end date prorate days: {{endDateProrateDays}}</p>
-<p>middle month count: {{middleMonthCount}}</p>
+<div class="row">
+
+  <div class="col-md-4">
+    <p>Today's Date: {{moment today "L"}}</p>
+    <p>{{firstMonthEquation}}</p>
+    <p>{{middleMonthEquation}}</p>
+    <p>{{endMonthEquation}}</p>
+{{!--     <p>start date prorate days: {{startDateProrateDays}}</p>
+    <p>end date prorate days: {{endDateProrateDays}}</p>
+    <p>middle month count: {{middleMonthCount}}</p> --}}
+  </div>
+
+  <div class="col-md-8">
+    <p>Monthly Rate: {{number-input value=monthlyAmount}}</p>
+    <p>Start date: {{bootstrap-datepicker value=start format="mm/dd/yyyy" todayHighlight=true}}</p>
+    <p>End date: {{bootstrap-datepicker value=end format="mm/dd/yyyy" todayHighlight=true}}</p>
+    <p><b>{{proratedRate}}</b></p>
+    {{zero-clipboard text=blurb innerClass="btn btn-default" label='blurb (copy)'}}
+    <p>{{blurb}}</p>
+  </div>
+  
+</div>

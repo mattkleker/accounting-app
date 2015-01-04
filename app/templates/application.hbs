@@ -1,24 +1,24 @@
 <div class="jumbotron">
-  <h1>My accounting app</h1>
-  <div class="checkbox">
+  <h2>My accounting app</h2>
+  {{!-- <div class="checkbox">
     <label for="include-next-month">
       {{input type="checkbox" id="include-next-month" name="include-next-month" checked=includeNextMonth}}
       Include Next Month?
     </label>
-  </div>
+  </div> --}}
   {{!-- <p>start date: {{input value=monthlyAmount}}</p> --}}
-  <p>today's date: {{moment today "L"}}</p>
-  <p>days this month: {{moment lastDayOfMonth "D"}}</p>
-  <div class="row">
-    <div class="col-md-6">
+  {{!-- <p>today's date: {{moment today "L"}}</p> --}}
+  {{!-- <p>days this month: {{moment lastDayOfMonth "D"}}</p> --}}
+  {{!-- <div class="row"> --}}
+    {{!-- <div class="col-md-6"> --}}
       {{prorated-amount monthlyAmount=1250
         includeNextMonth=includeNextMonth}}
-    </div>
+    {{!-- </div> --}}
 
-    <div class="col-md-6">
+{{!--     <div class="col-md-6">
       {{prorated-amount monthlyAmount=1000
         includeNextMonth=includeNextMonth}}
-    </div>
-  </div>
+    </div> --}}
+  {{!-- </div> --}}
 
 </div>
