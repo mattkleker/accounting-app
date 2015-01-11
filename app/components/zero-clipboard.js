@@ -1,4 +1,5 @@
 import ZeroClipboard from 'ember-cli-zero-clipboard/components/zero-clipboard';
+import Ember from 'ember';
 
 export default ZeroClipboard.extend({
   classNames: ['zeroclipboard'],
