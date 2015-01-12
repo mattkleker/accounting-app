@@ -44,9 +44,10 @@ export default Ember.Component.extend({
   endDateSetter: function() {
     if (this.get('startDate').date() > 17) {
       this.set('end', moment().add(1, "month").endOf("month").format('MM/DD/YYYY'));
-    }
+    } else {
       this.set('end', moment().endOf("month").format('MM/DD/YYYY'));
-    }.on('init').observes('startDate'),  
+    }
+  }.on('init').observes('startDate'), 
 
   endDate: function() {
     return moment(this.get('end'));

@@ -7,7 +7,7 @@ import { initialize } from '../../../initializers/ember-moment';
 
 moduleForComponent('prorated-amount', 'ProratedAmountComponent', {
   // specify the other units that are required for this test
-  needs: ['component:zero-clipboard'],
+  needs: ['component:zero-clipboard', 'component:number-input', 'component:bootstrap-datepicker'],
   setup: function (container) {
     Ember.run(function () {
       // these two arguments are not used
