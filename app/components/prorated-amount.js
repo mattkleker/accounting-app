@@ -47,7 +47,7 @@ export default Ember.Component.extend({
     } else {
       this.set('end', moment().endOf("month").format('MM/DD/YYYY'));
     }
-  }.on('init').observes('startDate'), 
+  }.on('init').observes('startDate'),
 
   endDate: function() {
     return moment(this.get('end'));
@@ -86,17 +86,17 @@ export default Ember.Component.extend({
 
   firstMonthEquation: function() {
     return this.get('startDate').format("MMMM") + ': $' + this.get('monthlyAmount') + ' / ' + this.get('startDate').clone().endOf("month").format("D") + ' x ' + this.get('startDateProrateDays') + " = " + this.get('startDateProratedRate').toFixed(2);
-  }.property('startDate', 'monthlyAmount', 'startDateProrateDays', 'startDateProratedRate'), 
+  }.property('startDate', 'monthlyAmount', 'startDateProrateDays', 'startDateProratedRate'),
 
   middleMonthEquation: function() {
     var equation = "";
-    if(this.get('middleMonthCount') > 0) {
+    if (this.get('middleMonthCount') > 0) {
       var i;
       for (i = 0; i < this.get('middleMonthCount'); i++) {
-      equation += this.get('startDate').clone().add(i+1,"months").format("MMMM") + ": $" + this.get('monthlyAmount') + "<br>";
+        equation += this.get('startDate').clone().add(i+1,"months").format("MMMM") + ": $" + this.get('monthlyAmount') + "<br>";
       }
-    return equation;
     }
+    return equation;
   }.property('middleMonthCount', 'startDate', 'monthlyAmount'),
 
   endMonthEquation: function() {
